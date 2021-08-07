@@ -1,0 +1,26 @@
+{
+ "xsappname": "authcode-newapp",
+ "tenant-mode": "dedicated",
+ "description": "Security profile of getuserinfo",
+ "scopes": [
+   {
+     "name": "$XSAPPNAME.user",
+    "description": "UAA"
+   }
+ ],
+ "role-templates": [
+   {
+     "name": "Token_Exchange",
+     "description": "UAA",
+       "scope-references": [
+       "$XSAPPNAME.user"
+     ]
+   }
+ ],
+  "oauth2-configuration": {
+        "redirect-uris": [
+
+          "https://webrouter.cfapps.eu10.hana.ondemand.com/login/callback"
+        ]
+    }
+}

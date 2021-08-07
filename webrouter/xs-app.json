@@ -1,0 +1,46 @@
+{
+    "welcomeFile": "index.html",
+    "authenticationMethod": "route",
+    "routes": [
+        {
+            "source": "/authcode-newapp(.*)",
+            "target": "$1",
+            "destination": "authcode-newapp"
+        },
+        {   "csrfProtection": false,
+            "source": "^/addProduct/(.*)$",
+            "target": "$1",
+            "destination": "addProduct"
+        },
+        {   "csrfProtection": false,
+            "source": "^/home/(.*)$",
+            "target": "$1",
+            "destination": "home"
+        },
+        {
+            "source": "^/viewProduct/(.*)",
+            "target": "$1",
+            "destination": "viewProduct"
+        },
+        {
+            "source": "^/login/(.*)",
+            "target": "$1",
+            "destination": "login"
+        },
+        {
+            "source": "^/callback/(.*)$",
+            "target": "$1",
+            "destination": "callback"
+        },
+        {
+            "source": "^/user-api(.*)",
+            "target": "$1",
+            "service": "sap-approuter-userapi"
+       },
+        {
+            "source": "^/createtable/(.*)",
+            "target": "$1",
+            "destination": "createtable"
+       }
+    ]
+}

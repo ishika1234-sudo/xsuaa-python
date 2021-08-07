@@ -1,0 +1,59 @@
+applications:
+- name: authcode-newapp
+  memory: 512M
+  disk_quota: 512M
+  command: python3 main.py
+  services:
+    - hdi-db
+    - myuaa
+  TARGET_CONTAINER: hdi-db
+- name: webrouter
+  domain: cfapps.eu10.hana.ondemand.com
+  memory: 512M
+  disk_quota: 512M
+  path: webrouter
+  env:
+    destinations: >
+      [
+        {
+          "name": "authcode-newapp",
+          "url": "https://authcode-newapp.cfapps.eu10.hana.ondemand.com/",
+          "forwardAuthToken": true
+        },
+      {
+          "name": "home",
+          "url": "https://authcode-newapp.cfapps.eu10.hana.ondemand.com/home/",
+          "forwardAuthToken": true
+        },
+      {
+          "name": "addProduct",
+          "url": "https://authcode-newapp.cfapps.eu10.hana.ondemand.com/addProduct/",
+          "forwardAuthToken": true
+        },
+      {
+        "name": "viewProduct",
+        "url": "https://authcode-newapp.cfapps.eu10.hana.ondemand.com/viewProduct/",
+        "forwardAuthToken": true
+      },
+      {
+        "name": "login",
+        "url": "https://authcode-newapp.cfapps.eu10.hana.ondemand.com/login/",
+        "forwardAuthToken": true
+        },
+      {
+        "name": "callback",
+        "url": "https://authcode-newapp.cfapps.eu10.hana.ondemand.com/login/callback",
+        "forwardAuthToken": true
+      },
+      {
+        "name": "createtable",
+        "url": "https://authcode-newapp.cfapps.eu10.hana.ondemand.com/createtable/",
+        "forwardAuthToken": true
+      }
+
+      ]
+  services:
+   - myuaa
+
+
+
